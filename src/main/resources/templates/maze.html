@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Maze Pathfinder</title>
+    <link rel="stylesheet" th:href="@{/css/maze.css}">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>🧩 Maze Pathfinder</h1>
+            <p class="subtitle">Interactive pathfinding algorithm visualizer</p>
+        </header>
+
+        <div class="controls">
+            <div class="control-group">
+                <label for="algorithm">Algorithm:</label>
+                <select id="algorithm">
+                    <option value="BFS">Breadth-First Search (BFS)</option>
+                    <option value="DFS">Depth-First Search (DFS)</option>
+                    <option value="DIJKSTRA">Dijkstra's Algorithm</option>
+                </select>
+            </div>
+
+            <div class="control-group">
+                <label for="rows">Rows:</label>
+                <input type="number" id="rows" value="20" min="5" max="50">
+            </div>
+
+            <div class="control-group">
+                <label for="cols">Columns:</label>
+                <input type="number" id="cols" value="40" min="5" max="80">
+            </div>
+
+            <div class="button-group">
+                <button id="generateBtn" class="btn btn-secondary">Generate Grid</button>
+                <button id="runBtn" class="btn btn-primary">Run</button>
+                <button id="resetBtn" class="btn btn-warning">Reset</button>
+                <button id="clearWallsBtn" class="btn btn-danger">Clear Walls</button>
+            </div>
+        </div>
+
+        <div class="instructions">
+            <p><strong>Instructions:</strong></p>
+            <ul>
+                <li><span class="key">Click</span> → Toggle wall</li>
+                <li><span class="key">Ctrl + Click</span> → Set start position</li>
+                <li><span class="key">Shift + Click</span> → Set goal position</li>
+            </ul>
+        </div>
+
+        <div class="legend">
+            <div class="legend-item">
+                <div class="legend-color start"></div>
+                <span>Start</span>
+            </div>
+            <div class="legend-item">
+                <div class="legend-color goal"></div>
+                <span>Goal</span>
+            </div>
+            <div class="legend-item">
+                <div class="legend-color wall"></div>
+                <span>Wall</span>
+            </div>
+            <div class="legend-item">
+                <div class="legend-color visited"></div>
+                <span>Visited</span>
+            </div>
+            <div class="legend-item">
+                <div class="legend-color path"></div>
+                <span>Path</span>
+            </div>
+        </div>
+
+        <div id="gridContainer" class="grid-container"></div>
+
+        <div class="stats-panel">
+            <h3>📊 Statistics</h3>
+            <div class="stats-grid">
+                <div class="stat-item">
+                    <span class="stat-label">Nodes Visited:</span>
+                    <span id="visitedCount" class="stat-value">0</span>
+                </div>
+                <div class="stat-item">
+                    <span class="stat-label">Path Length:</span>
+                    <span id="pathLength" class="stat-value">0</span>
+                </div>
+                <div class="stat-item">
+                    <span class="stat-label">Execution Time:</span>
+                    <span id="executionTime" class="stat-value">0 ms</span>
+                </div>
+                <div class="stat-item">
+                    <span class="stat-label">Status:</span>
+                    <span id="status" class="stat-value status-ready">Ready</span>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script th:src="@{/js/maze.js}"></script>
+</body>
+</html>
